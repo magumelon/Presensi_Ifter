@@ -1,0 +1,155 @@
+<html>
+ <head>
+  <title>Surat Izin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    .footer {
+        background-color: white;
+        padding: 10px 0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer .footer-item {
+        text-align: center;
+        color: #306194;
+        position: relative;
+        flex: 1;
+    }
+
+    .footer .footer-item i {
+        display: block;
+        font-size: 24px;
+    }
+
+    .footer .footer-item div {
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .footer .footer-item.active {
+        color: #1a2a44;
+    }
+
+    .footer .presence-logo {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #1a2a44;
+        border-radius: 50%;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .footer .presence-logo i {
+        font-size: 24px;
+        color: white;
+    }
+
+    .footer .presence-logo-text {
+        margin-top: 40px;
+        font-size: 12px;
+        color: #1a2a44;
+    }
+
+    .calendar-icon, .home-icon, .user-icon {
+        color: #1a2a44;
+    }
+
+    .scrollable {
+        overflow-y: auto;
+        padding-bottom: 100px; /* To avoid footer overlap */
+        max-height: calc(100vh - 200px); /* Adjust max height to fit content within the screen */
+    }
+  </style>
+ </head>
+ <body class="bg-gray-100 font-roboto">
+  <div class="w-full bg-[#192f46] text-white p-4">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <img alt="School Logo" class="w-12 h-12 rounded-full" height="40" src="images/logo smkn 3 cimahi.png" width="40"/>
+      </div>
+      <div class="flex-1 text-center">
+        <div class="text-xl font-bold">Presensi Online</div>
+        <div class="text-lg">SMK Negeri 3 Cimahi</div>
+      </div>
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-sign-out-alt text-2xl"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="scrollable p-4">
+    <div class="bg-[#192f46] text-white p-4 rounded-t-lg">
+      <h1 class="text-xl">Surat Izin</h1>
+    </div>
+    <div class="bg-[#192f46] p-4 rounded-b-lg shadow-lg">
+      <div class="mb-4 bg-gray-100 p-4 rounded-lg">
+        <h2 class="text-lg font-semibold mb-2">Informasi Diri</h2>
+        <div class="bg-white p-4 rounded-lg mb-2">
+          <span class="font-semibold">Nama Lengkap</span>: Agung Tauhid
+        </div>
+        <div class="bg-white p-4 rounded-lg mb-2">
+          <span class="font-semibold">Alamat</span>: JL. Cipedes Atas No.78, Gegerkalong, Kec. Sukasari, Kota Bandung, Jawa Barat 40152
+        </div>
+        <div class="bg-white p-4 rounded-lg">
+          <span class="font-semibold">NISN</span>: 740049
+        </div>
+      </div>
+      <div class="bg-gray-100 p-4 rounded-lg">
+        <h2 class="text-lg font-semibold mb-2">Alasan Izin</h2>
+        <div class="bg-white p-4 rounded-lg mb-2">
+          <span class="font-semibold">Tujuan Surat</span>: Wali Kelas 12 DKV 1
+        </div>
+        <div class="bg-white p-4 rounded-lg mb-2">
+          <span class="font-semibold">Alasan</span>: Saya sakit bu
+        </div>
+        <div class="bg-white p-4 rounded-lg">
+          <span class="font-semibold">Lampiran</span> <span class="text-red-500">*</span>
+          <div class="border-dashed border-2 border-gray-300 p-4 mt-2 rounded-lg flex items-center justify-center">
+            <i class="fas fa-file-pdf text-red-500 text-4xl"></i>
+            <span class="ml-2">Surat Sakit Dari Dokter</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center mt-4 space-x-4">
+        <button class="bg-green-500 text-white py-2 px-8 rounded-lg">Terima</button>
+        <button class="bg-red-500 text-white py-2 px-8 rounded-lg">Tolak</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-item">
+      <i class="fas fa-home home-icon"></i>
+      <div>Dashboard</div>
+    </div>
+    <div class="footer-item">
+      <i class="fas fa-calendar-alt calendar-icon"></i>
+      <div>Jadwal</div>
+    </div>
+    <div class="footer-item active">
+        <div class="presence-logo">
+            <i class="fas fa-users"></i>
+        </div>
+        <div class="presence-logo-text" style="margin-top: 40px;">Cek Presensi</div>
+    </div>
+    <div class="footer-item">
+      <i class="fas fa-user user-icon"></i>
+      <div>Akun</div>
+    </div>
+    <div class="footer-item">
+      <i class="fas fa-envelope"></i>
+      <div>Surat Masuk</div>
+    </div>
+  </div>
+</body>
+</html>

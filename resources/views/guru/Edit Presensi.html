@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Presensi Online</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    .footer {
+        background-color: white;
+        padding: 10px 0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer .footer-item {
+        text-align: center;
+        color: #1a2a44;
+        position: relative;
+        flex: 1;
+    }
+
+    .footer .footer-item i {
+        display: block;
+        font-size: 24px;
+    }
+
+    .footer .footer-item div {
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .footer .footer-item.active {
+        color: #1a2a44;
+    }
+
+    .footer .presence-logo {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #306194;
+        border-radius: 50%;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .footer .presence-logo i {
+        font-size: 24px;
+        color: white;
+    }
+
+    .footer .presence-logo-text {
+        margin-top: 40px;
+        font-size: 12px;
+        color: #1a2a44;
+    }
+
+    .footer .calendar-icon {
+        color: #1a2a44;
+    }
+
+    .attendance-item {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .attendance-item .status-bubble {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        cursor: pointer;
+    }
+
+    .attendance-item .dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 8px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+    }
+
+    .attendance-item.expanded .dropdown {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .dropdown-bubble {
+        padding: 6px 16px;
+        border-radius: 9999px;
+        background-color: white;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+
+    .dropdown-bubble.selected {
+        background-color: #6abcae;
+        color: white;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-roboto">
+  <!-- Header -->
+  <div class="w-full bg-[#192f46] text-white p-4">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <img alt="School Logo" class="w-12 h-12 rounded-full" height="40" src="images/logo smkn 3 cimahi.png" width="40"/>
+      </div>
+      <div class="flex-1 text-center">
+        <div class="text-xl font-bold">Presensi Online</div>
+        <div class="text-lg">SMK Negeri 3 Cimahi</div>
+      </div>
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-sign-out-alt text-2xl"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="w-full max-w-xs mx-auto bg-[#192f46] rounded-lg shadow-lg mt-4 p-4">
+    <div class="text-lg font-semibold text-white mb-4">Daftar Hadir</div>
+    <div class="space-y-4">
+      <!-- Attendance item for "Hadir" -->
+      <div class="attendance-item flex flex-col items-center justify-between bg-white text-black p-2 rounded-lg" onclick="toggleDropdown(this)">
+        <div class="flex items-center justify-between w-full">
+          <div class="flex items-center space-x-2">
+            <img alt="Student Photo" class="w-10 h-10 rounded-full" src="https://storage.googleapis.com/a1aa/image/SJHZnvUdkZIzE5nr8TXuBlQ7dxJJNupzTWqzRND04FycG77E.jpg"/>
+            <div>Nama Siswa</div>
+          </div>
+          <div class="status-bubble bg-[#6184c6] text-white px-4 py-1 rounded-full w-24 text-center">
+            Hadir <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+        <div class="dropdown mt-2">
+          <div class="dropdown-bubble" onclick="selectOption(this)">Hadir</div>
+          <div class="dropdown-bubble" onclick="selectOption(this)">Izin</div>
+          <div class="dropdown-bubble" onclick="selectOption(this)">Tanpa Ket.</div>
+        </div>
+      </div>
+
+      <!-- Attendance item for "Izin" -->
+      <div class="attendance-item flex flex-col items-center justify-between bg-white text-black p-2 rounded-lg" onclick="toggleDropdown(this)">
+        <div class="flex items-center justify-between w-full">
+          <div class="flex items-center space-x-2">
+            <img alt="Student Photo" class="w-10 h-10 rounded-full" src="https://storage.googleapis.com/a1aa/image/SJHZnvUdkZIzE5nr8TXuBlQ7dxJJNupzTWqzRND04FycG77E.jpg"/>
+            <div>Nama Siswa</div>
+          </div>
+          <div class="status-bubble bg-[#6abcae] text-white px-4 py-1 rounded-full w-24 text-center">
+            Izin <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+        <div class="dropdown mt-2">
+          <div class="dropdown-bubble" onclick="selectOption(this)">Hadir</div>
+          <div class="dropdown-bubble" onclick="selectOption(this)">Izin</div>
+          <div class="dropdown-bubble" onclick="selectOption(this)">Tanpa Ket.</div>
+        </div>
+      </div>
+
+      <!-- Attendance item for "Tanpa Ket." -->
+      <div class="attendance-item flex flex-col items-center justify-between bg-white text-black p-2 rounded-lg" onclick="toggleDropdown(this)">
+        <div class="flex items-center justify-between w-full">
+          <div class="flex items-center space-x-2">
+            <img alt="Student Photo" class="w-10 h-10 rounded-full" src="https://storage.googleapis.com/a1aa/image/SJHZnvUdkZIzE5nr8TXuBlQ7dxJJNupzTWqzRND04FycG77E.jpg"/>
+            <div>Nama Siswa</div>
+          </div>
+          <div class="status-bubble bg-[#eb6f4e] text-white px-4 py-1 rounded-full w-32 text-center">
+            Tanpa Ket. <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+        <div class="dropdown mt-2">
+          <div class="dropdown-bubble" onclick="selectOption(this)">Hadir</div>
+          <div class="dropdown-bubble" onclick="selectOption(this)">Izin</div>
+          <div class="dropdown-bubble" onclick="selectOption(this)">Tanpa Ket.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmation and Edit Buttons -->
+    <div class="flex justify-between mt-4">
+      <button class="bg-[#6abcae] text-white px-2 py-0.5 rounded-full text-sm">Konfirmasi</button>
+      <button class="bg-[#eb6f4e] text-white px-2 py-0.5 rounded-full text-sm">Batal</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-item">
+      <i class="fas fa-home"></i>
+      <div style="margin-top: 10px;">Dashboard</div>
+    </div>
+    <div class="footer-item">
+      <i class="fas fa-calendar-alt calendar-icon"></i>
+      <div style="margin-top: 10px;">Jadwal</div>
+    </div>
+    <div class="footer-item active">
+      <div class="presence-logo">
+        <i class="fas fa-users"></i>
+      </div>
+      <div class="presence-logo-text" style="margin-top: 40px;">Cek Presensi</div>
+    </div>
+    <div class="footer-item">
+      <i class="fas fa-user"></i>
+      <div style="margin-top: 10px;">Akun</div>
+    </div>
+    <div class="footer-item">
+      <i class="fas fa-envelope"></i>
+      <div>Surat Masuk</div>
+    </div>
+  </div>
+
+  <script>
+    function toggleDropdown(item) {
+      item.classList.toggle("expanded");
+    }
+
+    function selectOption(option) {
+      option.parentNode.querySelectorAll('.dropdown-bubble').forEach(el => el.classList.remove('selected'));
+      option.classList.add('selected');
+    }
+  </script>
+</body>
+</html>
