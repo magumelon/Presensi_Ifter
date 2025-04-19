@@ -1,13 +1,12 @@
 <?php
 
-// app/Http/Controllers/AuthController.php
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log; // Tambahkan ini untuk logging
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -22,21 +21,37 @@ class AuthController extends Controller
         // Log percobaan login
         Log::info('Login attempt', ['username' => $request->username]);
 
-        // Mencari pengguna berdasarkan username
+        // Cari user berdasarkan username
         $user = User::where('username', $request->username)->first();
 
         if ($user) {
-            Log::info('User  found', ['user' => $user]);
+            Log::info('User found', ['user' => $user]);
 
-            // Memeriksa apakah password cocok
+            // Cek password
             if (Hash::check($request->password, $user->password)) {
                 Auth::login($user);
-                return response()->json(['message' => 'Selamat datang ' . $user->username, 'redirect' => route('dashboard')]);
+
+                // Arahkan berdasarkan role
+                if ($user->role === 'murid') {
+                    return response()->json([
+                        'message' => 'Selamat datang murid ' . $user->username,
+                        'redirect' => route('dashboard')
+                    ]);
+                } elseif ($user->role === 'guru') {
+                    return response()->json([
+                        'message' => 'Selamat datang guru ' . $user->username,
+                        'redirect' => route('dashboard.guru')
+                    ]);
+                } else {
+                    // Role tidak dikenal
+                    Auth::logout();
+                    return response()->json(['message' => 'Role tidak dikenali. Hubungi admin.'], 403);
+                }
             } else {
                 Log::warning('Password mismatch', ['username' => $request->username]);
             }
         } else {
-            Log::warning('User  not found', ['username' => $request->username]);
+            Log::warning('User not found', ['username' => $request->username]);
         }
 
         return response()->json(['message' => 'Username / Password salah'], 401);
@@ -44,13 +59,12 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        // Logika untuk logout
         Auth::logout();
-        return redirect()->route('login'); // Mengarahkan kembali ke halaman login setelah logout
+        return redirect()->route('login');
     }
 
     public function dashboard()
     {
-        return view('dashboard'); // Ganti dengan view dashboard yang sesuai
+        return view('dashboard');
     }
 }

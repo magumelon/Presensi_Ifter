@@ -101,8 +101,17 @@
         .schedule-item .day {
             flex: 1; /* Pastikan setiap kolom memiliki lebar yang sama */
             text-align: center; /* Pusatkan teks di setiap kolom */
+            font-weight: bold;
+            font-size: 16px;
         }
 
+        .schedule-item .subject .teacher {
+            display: block;
+            font-size: 12px;
+            color: #888888;
+            font-weight: normal;
+            margin-top: 4px;
+        }
         .footer {
             background-color: white;
             padding: 10px 0;
@@ -124,7 +133,6 @@
         .footer .footer-item i {
             display: block;
             font-size: 24px;
-            color: #1a2a44; /* Pastikan semua ikon memiliki warna yang sama */
         }
 
         .footer .footer-item div {
@@ -159,8 +167,12 @@
             color: #1a2a44;
         }
 
-        .footer .calendar-icon {
-            color: #306194; /* Warna untuk ikon kalender */
+        .calendar-icon {
+            color: #1a2a44; /* Ubah warna ikon kalender */
+        }
+
+        .home-icon {
+            color: #306194; /* Ubah warna ikon home */
         }
     </style>
 </head>
@@ -186,9 +198,11 @@
                 @else
                     @foreach($jadwal as $item)
                         <div class="schedule-item">
-                            <div class="subject">{{ $item->matapelajaran }}<br/>
+                            <div class="subject">
+                                {{ $item->matapelajaran }}<br/>
                                 <span class="teacher">{{ $item->guru->nama }}</span>
                             </div>
+                            
                             <div class="time">
                                 <div style="font-weight: normal;">Waktu</div>
                                 <div>{{ $item->jam }}</div>

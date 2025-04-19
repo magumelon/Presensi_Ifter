@@ -104,66 +104,23 @@
     <img alt="Profile Picture" class="rounded-full mx-auto mt-4" height="100" src="https://storage.googleapis.com/a1aa/image/91iLIOeG7QVtDiDYCrFbWIwYOstgopoUnZcQmmWXhLeKTGoTA.jpg" width="100"/>
    </div>
    <div class="bg-white text-black p-4 mt-4 rounded-lg">
-    <h2 class="font-bold">
-     Informasi Diri
-    </h2>
+    <h2 class="font-bold">Informasi Diri</h2>
     <div class="mt-2">
-     <div class="flex">
-      <div class="w-1/3 font-semibold">
-       Nama Lengkap
-      </div>
-      <div class="w-2/3">
-       Agung Tauhid
-      </div>
-     </div>
-     <div class="flex mt-2">
-      <div class="w-1/3 font-semibold">
-       Alamat
-      </div>
-      <div class="w-2/3">
-       Jl. Cipedes Atas No.78, Gegerkalong, Kec. Sukasari, Kota Bandung, Jawa Barat 40152
-      </div>
-     </div>
-     <div class="flex mt-2">
-      <div class="w-1/3 font-semibold">
-       NIP
-      </div>
-      <div class="w-2/3">
-       740049
-      </div>
-     </div>
-     <div class="flex mt-2">
-      <div class="w-1/3 font-semibold">
-       Mata Pelajaran
-      </div>
-      <div class="w-2/3">
-       Pendidikan Jasmani
-      </div>
-     </div>
+        <div class="flex">
+            <div class="w-1/3 font-semibold">Nama Lengkap</div>
+            <div class="w-2/3">{{ $guru->nama }}</div> <!-- Menampilkan nama guru -->
+        </div>
+        <div class="flex mt-2">
+            <div class="w-1/3 font-semibold">Alamat</div>
+            <div class="w-2/3">{{ $guru->alamat ?? 'Belum diisi' }}</div> <!-- Menampilkan alamat guru -->
+        </div>
+        <div class="flex mt-2">
+            <div class="w-1/3 font-semibold">NIP</div>
+            <div class="w-2/3">{{ $guru->nip ?? 'Belum diisi' }}</div> <!-- Menampilkan NIP guru -->
+        </div>
     </div>
-   </div>
-   <div class="bg-white text-black p-4 mt-4 rounded-lg">
-    <h2 class="font-bold">
-     Kontak
-    </h2>
-    <div class="mt-2">
-     <div class="flex">
-      <div class="w-1/3 font-semibold">
-       Email
-      </div>
-      <div class="w-2/3">
-       agungtauhid@gmail.com
-      </div>
-     </div>
-     <div class="flex mt-2">
-      <div class="w-1/3 font-semibold">
-       No HP
-      </div>
-      <div class="w-2/3">
-       081234567890
-      </div>
-     </div>
-    </div>
+</div>
+
    </div>
   </div>
 

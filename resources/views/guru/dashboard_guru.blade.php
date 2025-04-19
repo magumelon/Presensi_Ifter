@@ -157,9 +157,12 @@
         <div>Dashboard</div>
     </div>
     <div class="footer-item">
-        <i class="fas fa-calendar-alt calendar-icon"></i> <!-- Tambahkan class calendar-icon -->
-        <div>Jadwal</div>
+        <a href="/schedule">
+            <i class="fas fa-calendar-alt calendar-icon"></i>
+            <div>Jadwal</div>
+        </a>
     </div>
+    
     <div class="footer-item active">
         <div class="presence-logo">
             <i class="fas fa-users"></i>

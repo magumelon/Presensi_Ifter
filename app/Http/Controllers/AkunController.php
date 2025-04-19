@@ -1,53 +1,105 @@
 <?php
+    namespace App\Http\Controllers;
 
-namespace App\Http\Controllers;
+    use App\Models\Murid;
+    use App\Models\Guru;
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
 
-use App\Models\Murid; // Import model Murid
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
-class AkunController extends Controller
-{
-    public function index()
+    class AkunController extends Controller
     {
-        // Ambil data pengguna yang sedang login
-        $user = Auth::user();
-        
-        // Ambil data murid berdasarkan user_id
-        $murid = Murid::where('user_id', $user->id)->first();
+        // Menampilkan halaman akun (baik guru atau murid)
+        public function index()
+        {
+            $user = Auth::user();
 
-        // Cek apakah data murid ada
-        if (!$murid) {
-            return redirect()->route('dashboard')->with('error', 'Data murid tidak ditemukan.');
+            // Jika role-nya guru
+            if ($user->role === 'guru') {
+                // Ambil data guru berdasarkan user_id
+                $guru = Guru::where('user_id', $user->id)->first();
+
+                if (!$guru) {
+                    return redirect()->route('dashboard')->with('error', 'Data guru tidak ditemukan.');
+                }
+
+                return view('Guru.account', compact('user', 'guru'));
+
+            } elseif ($user->role === 'murid') {
+                // Jika role-nya murid
+                $murid = Murid::where('user_id', $user->id)->first();
+
+                if (!$murid) {
+                    return redirect()->route('dashboard')->with('error', 'Data murid tidak ditemukan.');
+                }
+
+                return view('Siswa.akun', compact('user', 'murid'));
+            }
+
+            return redirect()->route('dashboard')->with('error', 'Role tidak dikenali.');
         }
 
-        return view('Siswa.akun', compact('user', 'murid')); // Mengirim data pengguna dan murid ke view
-    }
+        // Update data akun murid
+        public function update(Request $request)
+        {
+            $user = Auth::user();
 
-    public function update(Request $request)
-    {
-        // Validasi input
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'alamat' => 'nullable|string|max:255',
-            'nisn' => 'required|string|max:10|unique:murid,nisn,' . Auth::user()->murid->id,
-        ]);
+            // Validasi dan update sesuai role (guru atau murid)
+            if ($user->role === 'guru') {
+                $guru = Guru::where('user_id', $user->id)->first();
+                if (!$guru) {
+                    return redirect()->route('akun')->with('error', 'Data guru tidak ditemukan.');
+                }
 
-        // Ambil data murid
-        $murid = Murid::where('user_id', Auth::id())->first();
+                // Validasi dan update data guru
+                $request->validate([
+                    'nama'   => 'required|string|max:255',
+                    'alamat' => 'nullable|string|max:255',
+                    'nip'    => 'required|string|max:20|unique:gurus,nip,' . $guru->id,
+                ]);
 
-        // Cek apakah data murid ada
-        if (!$murid) {
-            return redirect()->route('akun')->with('error', 'Data murid tidak ditemukan.');
+                $guru->update([
+                    'nama'   => $request->nama,
+                    'alamat' => $request->alamat,
+                    'nip'    => $request->nip,
+                ]);
+            } else {
+                // Jika role murid
+                $murid = Murid::where('user_id', $user->id)->first();
+                if (!$murid) {
+                    return redirect()->route('akun')->with('error', 'Data murid tidak ditemukan.');
+                }
+
+                // Validasi dan update data murid
+                $request->validate([
+                    'nama'   => 'required|string|max:255',
+                    'alamat' => 'nullable|string|max:255',
+                    'nisn'   => 'required|string|max:10|unique:murid,nisn,' . $murid->id,
+                ]);
+
+                $murid->update([
+                    'nama'   => $request->nama,
+                    'alamat' => $request->alamat,
+                    'nisn'   => $request->nisn,
+                ]);
+            }
+
+            return redirect()->route('akun')->with('success', 'Informasi berhasil diperbarui.');
         }
 
-        // Update data murid
-        $murid->update([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'nisn' => $request->nisn,
-        ]);
+        public function akunGuru()
+        {
+            $guru = auth()->user(); // ambil data guru yang login
+            return view('akun_guru', compact('guru'));
+        }
 
-        return redirect()->route('akun')->with('success', 'Informasi berhasil diperbarui.');
+        public function updateGuru(Request $request)
+        {
+            $guru = auth()->user();
+            $guru->name = $request->name;
+            $guru->email = $request->email;
+            $guru->save();
+
+            return redirect()->back()->with('success', 'Data akun guru berhasil diperbarui!');
+        }
     }
-}
+?>

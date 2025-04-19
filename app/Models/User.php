@@ -1,6 +1,5 @@
 <?php
 
-// app/Models/User.php
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,11 +19,36 @@ class User extends Authenticatable
         'password',
     ];
 
-    public $timestamps = false; // Menonaktifkan timestamp
+    public $timestamps = false;
 
-    // Menambahkan relasi ke model Murid
+    // 🔁 Relasi ke tabel murid (jika user adalah murid)
     public function murid()
     {
-        return $this->hasOne(Murid::class, 'user_id'); // Sesuaikan dengan nama kolom yang benar di tabel murid
+        return $this->hasOne(Murid::class, 'user_id'); 
+    }
+    
+    // Relasi ke tabel guru (jika user adalah guru)
+    public function guru()
+    {
+        return $this->hasOne(Guru::class, 'user_id');
+    }
+
+
+    // 🔁 Relasi ke jadwal guru (jika user adalah guru)
+    public function jadwalGuru()
+    {
+        return $this->hasMany(JadwalGuru::class, 'guru_id');
+    }
+
+    // ✅ Cek apakah user adalah murid
+    public function isMurid()
+    {
+        return $this->role === 'murid';
+    }
+
+    // ✅ Cek apakah user adalah guru
+    public function isGuru()
+    {
+        return $this->role === 'guru';
     }
 }

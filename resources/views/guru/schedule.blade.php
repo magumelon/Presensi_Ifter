@@ -72,7 +72,7 @@
                 border-radius: 10px;
                 padding: 20px;
                 color: white;
-                margin-top: 20px; /* Make the schedule box position lower */
+                margin: 30px; /* Make the schedule box position lower */
             }
 
             /* Styling for the header of the schedule container */
@@ -108,7 +108,7 @@
                 background-color: white;
                 border-radius: 10px;
                 padding: 15px;
-                margin-bottom: 10px;
+                margin: 10px 15px; /* ⬅️ Tambahkan ini supaya ada jarak kiri & kanan */
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -233,49 +233,41 @@
         </div>
 
         <!-- Main content area for displaying the schedule -->
-        <div class="content">
-            <!-- Schedule container -->
-            <div class="schedule-container">
-                <h2>Jadwal Minggu Ini :</h2>
-                <div class="schedule">
-                    <!-- Individual schedule items -->
-                    <div class="schedule-item">
-                        <div class="subject">12 DKV 1<br/>
-                            <span class="teacher">Ibu Marisa</span>
-                        </div>
-                        <div class="time">
-                            <div style="font-weight: normal;">Waktu</div>
-                            <div>07.00</div>
-                        </div>
-                        <div class="day">
-                            <div style="font-weight: normal;">Hari</div>
-                            <div>Senin</div>
-                        </div>
+        <div class="schedule-container">
+            <h2>Jadwal Minggu Ini :</h2>
+            <div class="schedule">
+                <!-- Loop through the schedule data -->
+                @foreach ($schedule as $item)
+                <div class="schedule-item">
+                    
+                    <div class="subject">
+                        <span class="teacher"> {{ $item->nama_guru }}</span>
                     </div>
-                    <div class="schedule-item">
-                        <div class="subject">10 DKV 2<br/>
-                            <span class="teacher">Bapak Wawan</span>
-                        </div>
-                        <div class="time">
-                            <div style="font-weight: normal;">Waktu</div>
-                            <div>10.00</div>
-                        </div>
-                        <div class="day">
-                            <div style="font-weight: normal;">Hari</div>
-                            <div>Senin</div>
-                        </div>
+
+
+                    <div class="time">
+                        <div style="font-weight: normal;">Waktu</div>
+                        <div>{{ $item->jam }}</div>
                     </div>
-                    <!-- Additional schedule items are omitted for brevity -->
+                    <div class="day">
+                        <div style="font-weight: normal;">Hari</div>
+                        <div>{{ $item->hari }}</div>
+                    </div>
                 </div>
+                @endforeach
             </div>
         </div>
+    </div>       
 
         <!-- Footer section containing navigation links and camera icon for presensi -->
         <div class="footer">
             <div class="footer-item">
-                <i class="fas fa-home"></i>
-                <div style="margin-top: 10px;">Dashboard</div>
+                <a href="/dashboard">  <!-- Tambahkan tag <a> dengan href menuju ke halaman dashboard -->
+                    <i class="fas fa-home home-icon"></i> <!-- Tambahkan class home-icon -->
+                    <div>Dashboard</div>
+                </a>
             </div>
+            
             <div class="footer-item">
                 <i class="fas fa-calendar-alt calendar-icon"></i>
                 <div style="margin-top: 10px;">Jadwal</div>

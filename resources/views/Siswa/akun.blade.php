@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Profile</title>
+    <title>Profil</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
@@ -80,7 +80,7 @@
     <div class="bg-[#192f46] text-white p-4">
         <div class="flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <img alt="School Logo" class="w-12 h-12 rounded-full" height="40" src="images/logo smkn 3 cimahi.png" width="40"/>
+                <img alt="Logo Sekolah" class="w-12 h-12 rounded-full" height="40" src="images/logo smkn 3 cimahi.png" width="40"/>
             </div>
             <div class="flex-1 text-center">
                 <div class="text-xl font-bold">Online Presence</div>
@@ -99,7 +99,7 @@
 
     <div class="bg-[#192f46] text-white p-2 rounded-3xl mt-4 mx-4 h-[600px]">
         <div class="text-center">
-            <h1 class="text-xl font-bold">Profile</h1>
+            <h1 class="text-xl font-bold">Profil</h1>
             <img alt="Profile Picture" class="rounded-full mx-auto mt-4" height="100" src="{{ asset('images/profile.png') }}" width="100"/>
         </div>
 
@@ -133,6 +133,7 @@
                 </div>
             </div>
         </div>
+
         <div class="bg-white text-black p-4 mt-4 rounded-lg">
             <h2 class="font-bold">Kontak</h2>
             <div class="mt-2">
