@@ -85,8 +85,8 @@
             <div class="flex items-center space-x-2">
                 <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                     @csrf
-                    <button type="submit" class="text-2xl bg-transparent border-0">
-                        <i class="fas fa-sign-out-alt"></i>
+                    <button type="submit" class="icon" style="background: none; border: none; color: white;">
+                        <i class="fas fa-sign-out-alt text-2xl"></i>
                     </button>
                 </form>
             </div>

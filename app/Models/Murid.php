@@ -16,6 +16,8 @@ class Murid extends Model
         'nama',
         'alamat',
         'nisn',
+        'email',
+        'nohp'
     ];
 
     // Relasi dengan model User

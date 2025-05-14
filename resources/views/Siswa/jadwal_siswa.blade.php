@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <title>Jadwal Siswa</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Profil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -14,19 +17,20 @@
         }
 
         .header {
-            background-color: #1a2a44;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-        }
+    background-color: #1a2a44;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
 
         .header img {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             position: absolute;
-            left: 20px;
+            left: 10px;
             top: 20px;
         }
 
@@ -41,11 +45,13 @@
         }
 
         .header .icon {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            font-size: 24px;
-        }
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+}
+
 
         .content {
             padding: 20px;
@@ -130,10 +136,15 @@
             flex: 1;
         }
 
+        .footer .footer-item.active i {
+            color: #306194; /* Warna untuk ikon aktif */
+        }
+
         .footer .footer-item i {
             display: block;
             font-size: 24px;
         }
+
 
         .footer .footer-item div {
             font-size: 12px;
@@ -168,11 +179,15 @@
         }
 
         .calendar-icon {
-            color: #1a2a44; /* Ubah warna ikon kalender */
+            color: #1a2a44;
         }
 
-        .home-icon {
-            color: #306194; /* Ubah warna ikon home */
+        .home {
+            color: #1a2a44;
+        }
+
+        .calendar-icon {
+            color:#1a2a44;
         }
     </style>
 </head>
@@ -181,12 +196,14 @@
         <img alt="School Logo" height="40" src="images/logo smkn 3 cimahi.png" width="40"/>
         <div class="title">Presensi Online</div>
         <div class="subtitle">SMA Negeri 3 Cimahi</div>
-        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-            @csrf
-            <button type="submit" class="icon" style="background: none; border: none; color: white;">
-                <i class="fas fa-sign-out-alt"></i>
-            </button>
-        </form>
+        <div class="flex items-center space-x-2">
+            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                @csrf
+                <button type="submit" class="icon" style="background: none; border: none; color: white;">
+                    <i class="fas fa-sign-out-alt text-2xl"></i>
+                </button>
+            </form>
+        </div>
     </div>
 
     <div class="content">
@@ -220,37 +237,39 @@
 
     <div class="footer">
         <div class="footer-item">
-            <a href="{{ route('dashboard') }}"> <!-- Tautan ke halaman dashboard -->
-                <i class="fas fa-home"></i>
-                <div style="margin-top: 10px;">Dashboard</div>
+            <a href="{{ route('dashboard') }}">
+                <i class="fas fa-home home-icon"></i>
+                <div>Dashboard</div>
             </a>
         </div>
         <div class="footer-item active">
             <a href="{{ route('jadwal_siswa') }}"> <!-- Tautan ke halaman jadwal -->
-                <i class="fas fa-calendar-alt calendar-icon"></i> <!-- Ikon kalender dengan warna yang sesuai -->
-                <div style="margin-top: 10px;">Jadwal</div>
+                <i class="fas fa-calendar-alt calendar-icon"></i>
+                <div>Jadwal</div>
             </a>
         </div>
         <div class="footer-item">
-            <a href="{{ route('presensi') }}"> <!-- Tautan ke halaman presensi -->
+            <a href="{{ route('presensi') }}">
                 <div class="presence-logo">
                     <i class="fas fa-camera"></i>
                 </div>
-                <div class="presence-logo-text" style="margin-top: 40px;">Presensi</div>
+                <div class="presence-logo-text">Presensi</div>
             </a>
         </div>
         <div class="footer-item">
-            <a href="{{ route('akun') }}"> <!-- Tautan ke halaman akun -->
+            <a href="{{ route('akun') }}">
                 <i class="fas fa-user"></i>
-                <div style="margin-top: 10px;">Akun</div>
+                <div>Profil</div>
             </a>
         </div>
         <div class="footer-item">
-            <a href="{{ route('surat_izin.create') }}"> <!-- Tautan ke halaman buat surat izin -->
+            <a href="{{ route('surat_izin.create') }}">
                 <i class="fas fa-file-alt"></i>
-                <div style="margin-top: 10px;">Buat Surat</div>
+                <div>Buat Surat</div>
             </a>
         </div>
     </div>
+    
+    
 </body>
 </html>
