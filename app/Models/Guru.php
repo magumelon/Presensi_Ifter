@@ -17,6 +17,7 @@ class Guru extends Model
         'email',
         'nip',
         'alamat',
+        'nohp',
     ];
 
     // Relasi dengan model User

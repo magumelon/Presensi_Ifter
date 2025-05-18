@@ -22,7 +22,7 @@
                     return redirect()->route('dashboard')->with('error', 'Data guru tidak ditemukan.');
                 }
 
-                return view('Guru.account', compact('user', 'guru'));
+                return view('guru.account', compact('user', 'guru'));
 
             } elseif ($user->role === 'murid') {
                 // Jika role-nya murid
@@ -55,12 +55,14 @@
                     'nama'   => 'required|string|max:255',
                     'alamat' => 'nullable|string|max:255',
                     'nip'    => 'required|string|max:20|unique:gurus,nip,' . $guru->id,
+                    'nohp'   => 'required|string|max:255',
                 ]);
 
                 $guru->update([
                     'nama'   => $request->nama,
                     'alamat' => $request->alamat,
                     'nip'    => $request->nip,
+                    'nohp'   => $request->nohp,
                 ]);
             } else {
                 // Jika role murid
@@ -74,12 +76,14 @@
                     'nama'   => 'required|string|max:255',
                     'alamat' => 'nullable|string|max:255',
                     'nisn'   => 'required|string|max:10|unique:murid,nisn,' . $murid->id,
+                    'nohp'   => 'required|string|max:255',
                 ]);
 
                 $murid->update([
                     'nama'   => $request->nama,
                     'alamat' => $request->alamat,
                     'nisn'   => $request->nisn,
+                    'nohp'   => $request->nohp,
                 ]);
             }
 

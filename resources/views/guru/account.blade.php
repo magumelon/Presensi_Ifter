@@ -118,6 +118,14 @@
             <div class="w-1/3 font-semibold">NIP</div>
             <div class="w-2/3">{{ $guru->nip ?? 'Belum diisi' }}</div> <!-- Menampilkan NIP guru -->
         </div>
+        <div class="flex mt-2">
+            <div class="w-1/3 font-semibold">Email</div>
+            <div class="w-2/3">{{ $guru->email ?? 'Belum diisi' }}</div> <!-- Menampilkan NIP guru -->
+        </div>
+        <div class="flex mt-2">
+            <div class="w-1/3 font-semibold">NoHP</div>
+            <div class="w-2/3">{{ $guru->nohp ?? 'Belum diisi' }}</div> <!-- Menampilkan NIP guru -->
+        </div>
     </div>
 </div>
 

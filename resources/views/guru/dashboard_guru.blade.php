@@ -170,8 +170,10 @@
         <div class="presence-logo-text" style="margin-top: 40px;">Cek Presensi</div>
             </div>
     <div class="footer-item">
-        <i class="fas fa-user"></i>
-        <div>Akun</div>
+            <a href="{{ route('akun') }}"> <!-- Tautan ke halaman akun -->
+                <i class="fas fa-user user-icon"></i>
+                <div>Akun</div>
+            </a>
     </div>
     <div class="footer-item">
         <i class="fas fa-envelope"></i>

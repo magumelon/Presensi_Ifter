@@ -48,9 +48,11 @@ Route::middleware(['auth', 'role:murid'])->group(function () {
 // ===========================
 Route::middleware(['auth', 'role:guru'])->group(function () {
     Route::get('/dashboard-guru', [DashboardGuruController::class, 'index'])->name('dashboard.guru');
-    
+    Route::get('/jadwal-guru', [JadwalGuruController::class, 'index'])->name('jadwal.guru');
     // Route untuk melihat jadwal guru
     Route::get('/schedule', [JadwalGuruController::class, 'showSchedule'])->name('schedule.index');
+    Route::get('/akun', [AkunController::class, 'index'])->name('akun');
+    Route::post('/akun/update', [AkunController::class, 'update'])->name('akun.update');
     // Bisa ditambahkan route lain khusus guru di sini
     //Route::get('/dashboard', [DashboardGuruController::class, 'index'])->middleware('auth');
 });

@@ -130,6 +130,12 @@
             flex: 1;
         }
 
+        .footer a {
+    text-decoration: none;
+    color: inherit; /* biar warna tetap sesuai parent */
+}
+
+
         .footer .footer-item i {
             display: block;
             font-size: 24px;
@@ -141,7 +147,7 @@
         }
 
         .footer .footer-item.active {
-            color: #1a2a44;
+            color: #306194;
         }
 
         .footer .presence-logo {
@@ -168,12 +174,18 @@
         }
 
         .calendar-icon {
-            color: #1a2a44; /* Ubah warna ikon kalender */
+            color: #306194;
         }
 
         .home-icon {
-            color: #306194; /* Ubah warna ikon home */
+            color: #1a2a44;
         }
+
+        .user-icon {
+            color: #1a2a44;
+        }
+
+        
     </style>
 </head>
 <body>
@@ -221,8 +233,8 @@
     <div class="footer">
         <div class="footer-item">
             <a href="{{ route('dashboard') }}"> <!-- Tautan ke halaman dashboard -->
-                <i class="fas fa-home"></i>
-                <div style="margin-top: 10px;">Dashboard</div>
+                <i class="fas fa-home home-icon"></i>
+                <div>Dashboard</div>
             </a>
         </div>
         <div class="footer-item active">
@@ -232,23 +244,21 @@
             </a>
         </div>
         <div class="footer-item">
-            <a href="{{ route('presensi') }}"> <!-- Tautan ke halaman presensi -->
-                <div class="presence-logo">
-                    <i class="fas fa-camera"></i>
-                </div>
-                <div class="presence-logo-text" style="margin-top: 40px;">Presensi</div>
-            </a>
+            <div class="presence-logo">
+                <i class="fas fa-camera"></i>
+            </div>
+            <div class="presence-logo-text" style="margin-top: 40px;">Presensi</div>
         </div>
         <div class="footer-item">
             <a href="{{ route('akun') }}"> <!-- Tautan ke halaman akun -->
-                <i class="fas fa-user"></i>
-                <div style="margin-top: 10px;">Akun</div>
+                <i class="fas fa-user user-icon"></i>
+                <div>Akun</div>
             </a>
         </div>
         <div class="footer-item">
             <a href="{{ route('surat_izin.create') }}"> <!-- Tautan ke halaman buat surat izin -->
                 <i class="fas fa-file-alt"></i>
-                <div style="margin-top: 10px;">Buat Surat</div>
+                <div>Buat Surat</div>
             </a>
         </div>
     </div>

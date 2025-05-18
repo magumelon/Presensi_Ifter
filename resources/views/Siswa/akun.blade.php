@@ -139,10 +139,17 @@
             <div class="mt-2">
                 <div class="flex">
                     <div class="w-1/3 font-semibold">Email</div>
-                    <div class="w-2/3">{{ $user->email }}</div> <!-- Menampilkan email pengguna -->
+                    <div class="w-2/3">{{ $murid->email }}</div> <!-- Menampilkan email pengguna -->
+                </div>
+            </div>
+            <div class="mt-2">
+                <div class="flex">
+                    <div class="w-1/3 font-semibold">Nomor HP</div>
+                    <div class="w-2/3">{{ $murid->nohp }}</div> <!-- Menampilkan email pengguna -->
                 </div>
             </div>
         </div>
+        
     </div>
 
     <div class="footer">
@@ -169,7 +176,7 @@
         <div class="footer-item">
             <a href="{{ route('akun') }}"> <!-- Tautan ke halaman akun -->
                 <i class="fas fa-user user-icon"></i>
-                <div>Profil</div>
+                <div>Akun</div>
             </a>
         </div>
         <div class="footer-item">
