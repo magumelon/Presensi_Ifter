@@ -154,7 +154,7 @@
     </div>
     <div class="footer-item">
         <i class="fas fa-envelope"></i>
-        <div>Surat Maauk</div>
+        <div>Surat Masuk</div>
     </div>
   </div>
 </body>

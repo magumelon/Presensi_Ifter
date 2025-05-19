@@ -10,6 +10,7 @@ use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\SuratIzinController;
 use App\Http\Controllers\DashboardGuruController;
 use App\Http\Controllers\JadwalGuruController;
+use App\Http\Controllers\SuratMasukController;
 
 // Redirect root ke login
 Route::get('/', function () {
@@ -55,6 +56,7 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
     Route::post('/akun/update', [AkunController::class, 'update'])->name('akun.update');
     // Bisa ditambahkan route lain khusus guru di sini
     //Route::get('/dashboard', [DashboardGuruController::class, 'index'])->middleware('auth');
+    Route::get('/surat-masuk', [SuratMasukController::class, 'index'])->name('surat.masuk');
 });
 
 // ===========================

@@ -168,16 +168,18 @@
             <i class="fas fa-users"></i>
         </div>
         <div class="presence-logo-text" style="margin-top: 40px;">Cek Presensi</div>
-            </div>
+    </div>
     <div class="footer-item">
             <a href="{{ route('akun') }}"> <!-- Tautan ke halaman akun -->
                 <i class="fas fa-user user-icon"></i>
                 <div>Akun</div>
             </a>
     </div>
-    <div class="footer-item">
-        <i class="fas fa-envelope"></i>
-        <div>Surat Masuk</div>
+   <div class="footer-item">
+        <a href="{{ route('surat.masuk') }}">
+            <i class="fas fa-envelope"></i>
+            <div>Surat Masuk</div>
+        </a>
     </div>
   </div>
  </body>
