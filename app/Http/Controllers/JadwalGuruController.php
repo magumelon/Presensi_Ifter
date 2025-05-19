@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\JadwalGuru;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 
 class JadwalGuruController extends Controller
 {
@@ -19,20 +17,16 @@ class JadwalGuruController extends Controller
     }
     public function showSchedule()
 {
-    // Ambil data jadwal dari database (contoh)
-    $schedule = DB::table('jadwal_mengajar')
-        ->join('guru', 'jadwal_mengajar.guru_id', '=', 'guru.id')
-        ->join('users', 'guru.user_id', '=', 'users.id')
-        ->where('users.role', 'guru') // hanya ambil yang role-nya guru
+    // Mengambil data wali kelas dan kelas yang dipimpin oleh wali kelas tersebut
+    $schedule = DB::table('wali_kelas')
+        ->join('guru', 'wali_kelas.guru_id', '=', 'guru.id') // Menghubungkan dengan tabel guru untuk nama wali kelas
+        ->join('kelas', 'wali_kelas.kelas_id', '=', 'kelas.id') // Menghubungkan dengan tabel kelas untuk nama kelas
         ->select(
-            'jadwal_mengajar.hari',
-            'jadwal_mengajar.jam',
-            'guru.nama as nama_guru'
+            'kelas.nama_kelas',        // Menampilkan nama kelas
+            'guru.nama as nama_guru'   // Menampilkan nama wali kelas
         )
         ->get();
 
     return view('guru.schedule', compact('schedule'));
 }
-
-
 }

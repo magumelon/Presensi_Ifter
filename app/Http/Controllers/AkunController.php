@@ -10,33 +10,30 @@
     {
         // Menampilkan halaman akun (baik guru atau murid)
         public function index()
-        {
-            $user = Auth::user();
+{
+    $user = Auth::user();
 
-            // Jika role-nya guru
-            if ($user->role === 'guru') {
-                // Ambil data guru berdasarkan user_id
-                $guru = Guru::where('user_id', $user->id)->first();
+    // Cek role dan arahkan ke view yang sesuai
+    if ($user->role === 'guru') {
+        $guru = Guru::where('user_id', $user->id)->first();
 
-                if (!$guru) {
-                    return redirect()->route('dashboard')->with('error', 'Data guru tidak ditemukan.');
-                }
-
-                return view('guru.account', compact('user', 'guru'));
-
-            } elseif ($user->role === 'murid') {
-                // Jika role-nya murid
-                $murid = Murid::where('user_id', $user->id)->first();
-
-                if (!$murid) {
-                    return redirect()->route('dashboard')->with('error', 'Data murid tidak ditemukan.');
-                }
-
-                return view('Siswa.akun', compact('user', 'murid'));
-            }
-
-            return redirect()->route('dashboard')->with('error', 'Role tidak dikenali.');
+        if (!$guru) {
+            return redirect()->route('dashboard')->with('error', 'Data guru tidak ditemukan.');
         }
+
+        return view('guru.akun', compact('user', 'guru'));
+    } elseif ($user->role === 'murid') {
+        $murid = Murid::where('user_id', $user->id)->first();
+
+        if (!$murid) {
+            return redirect()->route('dashboard')->with('error', 'Data murid tidak ditemukan.');
+        }
+
+        return view('Siswa.akun', compact('user', 'murid'));
+    }
+
+    return redirect()->route('dashboard')->with('error', 'Role tidak dikenali.');
+}
 
         // Update data akun murid
         public function update(Request $request)
@@ -91,10 +88,18 @@
         }
 
         public function akunGuru()
-        {
-            $guru = auth()->user(); // ambil data guru yang login
-            return view('akun_guru', compact('guru'));
-        }
+{
+    $user = Auth::user();
+
+    // Ambil data guru berdasarkan user_id
+    $guru = Guru::where('user_id', $user->id)->first();
+
+    if (!$guru) {
+        return redirect()->route('dashboard')->with('error', 'Data guru tidak ditemukan.');
+    }
+
+    return view('guru.akun', compact('user', 'guru'));
+}
 
         public function updateGuru(Request $request)
         {

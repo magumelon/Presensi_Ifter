@@ -108,7 +108,8 @@
     <div class="mt-2">
         <div class="flex">
             <div class="w-1/3 font-semibold">Nama Lengkap</div>
-            <div class="w-2/3">{{ $guru->nama }}</div> <!-- Menampilkan nama guru -->
+            <div class="w-2/3">{{ $guru->nama ?? 'Belum diisi' }}</div>
+
         </div>
         <div class="flex mt-2">
             <div class="w-1/3 font-semibold">Alamat</div>
@@ -135,12 +136,16 @@
   <!-- Footer navigation -->
   <div class="footer">
     <div class="footer-item">
-        <i class="fas fa-home home-icon"></i>
-        <div>Dashboard</div>
+        <a href="{{ route('dashboard.guru') }}"> <!-- Tautan ke halaman dashboard -->
+            <i class="fas fa-home home-icon"></i>
+            <div>Dashboard</div>
+        </a>
     </div>
     <div class="footer-item">
-        <i class="fas fa-calendar-alt calendar-icon"></i>
-        <div>Jadwal</div>
+        <a href="{{ route('schedule.index') }}">
+            <i class="fas fa-calendar-alt calendar-icon"></i>
+            <div>Jadwal</div>
+        </a>
     </div>
     <div class="footer-item active">
         <div class="presence-logo">

@@ -150,11 +150,12 @@
                 <div class="presence-logo-text" style="margin-top: 40px;">Presensi</div>
             </a>
         </div>
+        
         <div class="footer-item">
-            <a href="{{ route('akun') }}"> <!-- Tautan ke halaman akun -->
+            <a href="{{ route(Auth::user()->role == 'guru' ? 'akun.guru' : 'akun.siswa') }}">
                 <i class="fas fa-user"></i>
                 <div>Akun</div>
-            </a>
+            </a>                
         </div>
         <div class="footer-item">
             <a href="{{ route('surat_izin.create') }}"> <!-- Tautan ke halaman buat surat izin -->

@@ -226,28 +226,39 @@
     <!-- Footer -->
     <div class="footer">
         <div class="footer-item">
-            <i class="fas fa-home"></i>
-            <div style="margin-top: 10px;">Dashboard</div>
+            <a href="/dashboard">
+                <i class="fas fa-home home-icon"></i>
+                <div>Dashboard</div>
+            </a>
         </div>
         <div class="footer-item">
-            <i class="fas fa-calendar-alt calendar-icon"></i>
-            <div style="margin-top: 10px;">Jadwal</div>
+            <a href="/schedule">
+                <i class="fas fa-calendar-alt calendar-icon"></i>
+                <div>Jadwal</div>
+            </a>
         </div>
         <div class="footer-item active">
-            <div class="presence-logo">
-                <i class="fas fa-users"></i>
-            </div>
-            <div class="presence-logo-text" style="margin-top: 40px;">Cek Presensi</div>
+            <a href="/presensi">
+                <div class="presence-logo">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="presence-logo-text" style="margin-top: 40px;">Cek Presensi</div>
+            </a>
         </div>
         <div class="footer-item">
-            <i class="fas fa-user"></i>
-            <div style="margin-top: 10px;">Akun</div>
+            <a href="/akun">
+                <i class="fas fa-user user-icon"></i>
+                <div>Akun</div>
+            </a>
         </div>
         <div class="footer-item">
-            <i class="fas fa-envelope"></i>
-            <div>Surat Masuk</div>
+            <a href="/surat-izin/create">
+                <i class="fas fa-envelope"></i>
+                <div>Surat Masuk</div>
+            </a>
         </div>
     </div>
+    
 
     <script>
         function toggleDetails(item) {

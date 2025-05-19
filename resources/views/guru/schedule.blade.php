@@ -186,6 +186,25 @@
             .footer .footer-item.active {
                 color: #1a2a44;
             }
+            /* Menghilangkan underline pada link */
+.footer-item a {
+    text-decoration: none; /* Menghilangkan underline */
+}
+
+/* Mengatur warna ikon yang tidak aktif */
+.footer-item a i {
+    color: #1a2a44; /* Ganti dengan warna default ikon */
+}
+
+/* Ganti warna ikon yang aktif */
+.footer-item.active a i {
+    color: #306194; /* Ganti dengan warna ikon saat aktif */
+}
+
+/* Ganti warna teks saat aktif */
+.footer-item.active a div {
+    color: #306194; /* Ganti dengan warna teks saat aktif */
+}
 
             /* Styling for the presence logo in the center of the footer */
             .footer .presence-logo {
@@ -234,40 +253,37 @@
 
         <!-- Main content area for displaying the schedule -->
         <div class="schedule-container">
-            <h2>Jadwal Minggu Ini :</h2>
+            <h2>Data Kelas :</h2>
             <div class="schedule">
-                <!-- Loop through the schedule data -->
                 @foreach ($schedule as $item)
                 <div class="schedule-item">
-                    
+                    <!-- Nama Wali Kelas -->
                     <div class="subject">
-                        <span class="teacher"> {{ $item->nama_guru }}</span>
+                        <div style="font-weight: bold;">Wali Kelas</div>
+                        <span class="teacher">{{ $item->nama_guru }}</span> <!-- Nama wali kelas -->
                     </div>
-
-
-                    <div class="time">
-                        <div style="font-weight: normal;">Waktu</div>
-                        <div>{{ $item->jam }}</div>
-                    </div>
-                    <div class="day">
-                        <div style="font-weight: normal;">Hari</div>
-                        <div>{{ $item->hari }}</div>
+        
+                    <!-- Nama Kelas -->
+                    <div class="class">
+                        <div style="font-weight: bold;">Kelas</div>
+                        <div>{{ $item->nama_kelas }}</div> <!-- Nama kelas -->
                     </div>
                 </div>
                 @endforeach
             </div>
         </div>
+        
     </div>       
 
         <!-- Footer section containing navigation links and camera icon for presensi -->
         <div class="footer">
             <div class="footer-item">
-                <a href="/dashboard">  <!-- Tambahkan tag <a> dengan href menuju ke halaman dashboard -->
-                    <i class="fas fa-home home-icon"></i> <!-- Tambahkan class home-icon -->
+                <a href="{{ url('/dashboard-guru') }}">
+                    <!-- Tautan ke halaman dashboard -->
+                    <i class="fas fa-home"></i>
                     <div>Dashboard</div>
                 </a>
-            </div>
-            
+            </div>            
             <div class="footer-item">
                 <i class="fas fa-calendar-alt calendar-icon"></i>
                 <div style="margin-top: 10px;">Jadwal</div>
@@ -279,9 +295,11 @@
                 <div class="presence-logo-text" style="margin-top: 40px;">Cek Presensi</div>
             </div>
             <div class="footer-item">
-                <i class="fas fa-user"></i>
-                <div style="margin-top: 10px;">Akun</div>
-            </div>
+                <a href="{{ route('akun.guru') }}"> <!-- Tautan ke halaman akun -->
+                    <i class="fas fa-user user-icon"></i>
+                    <div>Akun</div>
+                </a>
+        </div>
             <div class="footer-item">
                 <i class="fas fa-envelope"></i>
                 <div>Surat Masuk</div>

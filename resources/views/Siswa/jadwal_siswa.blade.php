@@ -243,17 +243,20 @@
                 <div style="margin-top: 10px;">Jadwal</div>
             </a>
         </div>
-        <div class="footer-item">
-            <div class="presence-logo">
-                <i class="fas fa-camera"></i>
-            </div>
-            <div class="presence-logo-text" style="margin-top: 40px;">Presensi</div>
-        </div>
-        <div class="footer-item">
-            <a href="{{ route('akun') }}"> <!-- Tautan ke halaman akun -->
-                <i class="fas fa-user user-icon"></i>
-                <div>Akun</div>
+        <div class="footer-item active">
+            <a href="{{ route('presensi') }}"> <!-- Tautan ke halaman presensi -->
+                <div class="presence-logo">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <div class="presence-logo-text" style="margin-top: 40px;">Presensi</div>
             </a>
+        </div>
+        
+        <div class="footer-item">
+            <a href="{{ route(Auth::user()->role == 'guru' ? 'akun.guru' : 'akun.siswa') }}">
+                <i class="fas fa-user"></i>
+                <div>Akun</div>
+            </a>                
         </div>
         <div class="footer-item">
             <a href="{{ route('surat_izin.create') }}"> <!-- Tautan ke halaman buat surat izin -->

@@ -157,7 +157,7 @@
         <div>Dashboard</div>
     </div>
     <div class="footer-item">
-        <a href="/schedule">
+        <a href="{{ route('schedule.index') }}">
             <i class="fas fa-calendar-alt calendar-icon"></i>
             <div>Jadwal</div>
         </a>
@@ -170,7 +170,7 @@
         <div class="presence-logo-text" style="margin-top: 40px;">Cek Presensi</div>
             </div>
     <div class="footer-item">
-            <a href="{{ route('akun') }}"> <!-- Tautan ke halaman akun -->
+            <a href="{{ route('akun.guru') }}"> <!-- Tautan ke halaman akun -->
                 <i class="fas fa-user user-icon"></i>
                 <div>Akun</div>
             </a>
